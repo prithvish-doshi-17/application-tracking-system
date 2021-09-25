@@ -54,15 +54,30 @@ export default class CardBoard extends Component {
         let card_class = this.createCardClaee(result);
         this.state = {
             card_titles: card_titles,
-            card_class: card_class
+            card_class: card_class,
+            showModal:false
         }
+    }
+
+    showEditModal(application) {
+        this.setState({
+            showModal: true,
+            application: application
+        })
+    }
+
+    closeEditModal(application) {
+        this.setState({
+            showModal: false,
+            application: null
+        })
     }
 
     createCardClaee(applications) {
         return applications.reduce((pv, v) => {
-            let app_class = <div className="col" id={v.title + "_class"}>
+            let app_class = <div className="col" key={v.title + "_class"} id={v.title + "_class"}>
                 {v.applications.reduce((pv, v) => {
-                    let card = <Card application = {v}/>
+                    let card = <Card application={v} showEditModal={this.showEditModal.bind(this, v)} />
                     pv.push(card)
                     return pv
                 }, [])}
@@ -80,10 +95,12 @@ export default class CardBoard extends Component {
 
     createCardTitle(applications) {
         return applications.reduce((pv, v) => {
-            let title = <div className="col">
+            let title = <div className="col" key={v.title + "_title"}>
                 <div className="card card-col">
                     <div className="card-body noPadding">
-                        <input type="text" className="text-center title-col form-control-lg" value={v.title} />
+                        <div type="text" className="text-center title-col form-control-lg" >
+                            {v.title}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,13 +145,10 @@ export default class CardBoard extends Component {
                 <div className="row">
                     {this.state.card_class}
                 </div>
-                
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Launch demo modal
-                </button>
-                <CardEdit />
-                
+
+                <CardEdit show={this.state.showModal} application={this.state.application} closeEditModal={this.closeEditModal.bind(this)} />
+
             </span>
-            )
+        )
     }
 }

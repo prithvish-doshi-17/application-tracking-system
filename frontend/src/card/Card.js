@@ -9,7 +9,8 @@ class Card extends Component {
             companyName: props.application.companyName,
             date: props.application.date,
             class: props.application.class,
-            id: props.application.id
+            id: props.application.id,
+            showEditModal: props.showEditModal
         }
 
     }
@@ -20,7 +21,7 @@ class Card extends Component {
 
     render() {
         return (
-            <div className="card card-col" key={this.state.id} onClick={console.log(this.state)}>
+            <div className="card card-col" key={this.state.id+"_card"}  onClick={this.state.showEditModal}>
                 <div className="card-body">
                     <div className="card-action">
                         <h6 className="card-title"  onClick={this.stopPropagation}>
