@@ -14,7 +14,10 @@ Here each table represents the multiple stages of the application process. Curre
 ## Features:
 
 ## Installation:
-
+* Start 
+```
+npm install
+```
 
 
 
