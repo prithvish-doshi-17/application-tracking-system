@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import CardEdit from './CardEdit';
 
 const application_list = [
     {
@@ -127,6 +128,13 @@ export default class CardBoard extends Component {
                 <div className="row">
                     {this.state.card_class}
                 </div>
-            </span>)
+                
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Launch demo modal
+                </button>
+                <CardEdit />
+                
+            </span>
+            )
     }
 }
