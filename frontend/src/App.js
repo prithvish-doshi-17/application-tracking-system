@@ -20,10 +20,10 @@ export default class App extends React.Component {
       <Sidebar />
       <div className="main">
         <div className="content">
-          <h1 className="text-center">To Do List</h1>
-          <div className="mb-3">
-            <span className="btn-icon">
-              <button className="btn btn-danger btn-icon"><i className="fas fa-plus"></i>&nbsp;Ajouter</button>
+          <h1 className="text-center">My applications</h1>
+          <div className="">
+            <span className="btn-icon ">
+              <button className="btn btn-danger btn-icon"><i className="fas fa-plus"></i>&nbsp;New</button>
             </span>
           </div>
           <CardBoard/>

@@ -51,7 +51,7 @@ export default class CardBoard extends Component {
 
         let result = this.groupApplication(application_list);
         let card_titles = this.createCardTitle(result);
-        let card_class = this.createCardClaee(result);
+        let card_class = this.createCardClass(result);
         this.state = {
             card_titles: card_titles,
             card_class: card_class,
@@ -73,7 +73,7 @@ export default class CardBoard extends Component {
         })
     }
 
-    createCardClaee(applications) {
+    createCardClass(applications) {
         return applications.reduce((pv, v) => {
             let app_class = <div className="col" key={v.title + "_class"} id={v.title + "_class"}>
                 {v.applications.reduce((pv, v) => {

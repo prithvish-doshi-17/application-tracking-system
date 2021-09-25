@@ -18,7 +18,7 @@ export default class CardEdit extends Component {
                 <Modal.Body>
                     <div className="form-group">
                         <label htmlFor="job_title" className="col-form-label">Job Title</label>
-                        <input type="text" className="form-control" id="job_title" value={this.props.application.jobTitle}/>
+                        <input type="text" className="form-control" id="job_title" defaultValue={this.props.application.jobTitle}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="Date" className="col-form-label">Date</label>

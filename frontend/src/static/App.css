@@ -170,6 +170,3 @@ input:focus-visible {
   max-width: calc(100% / 3);
   margin: auto;
 }
-.btn-icon{
-  display: flex;
-}
