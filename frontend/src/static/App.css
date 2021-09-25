@@ -74,9 +74,9 @@
   width: 100%;
 }
 .card-body:active {
-  cursor: move;
+  /* cursor: move;
   outline: 3px dashed #7b7b7b;
-  outline-offset: 1px;
+  outline-offset: 1px; */
 }
 
 .btn-danger {
