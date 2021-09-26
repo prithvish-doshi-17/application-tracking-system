@@ -14,11 +14,12 @@ Here each table represents the multiple stages of the application process. Curre
 ## Features:
 
 ## Installation:
-* Start App
+* Install
+First of all, you need to install [Node.js](https://nodejs.org/en/). After that, run the following command in the frontend directory to open the website. 
 ```
 npm install
+npm start
 ```
-
 
 
 ## Future Scope:
