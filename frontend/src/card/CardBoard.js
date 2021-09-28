@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
-import CardEdit from './CardEdit';
+import CardModal from './CardModal';
 
 const application_list = [
     {
@@ -83,7 +83,7 @@ export default class CardBoard extends Component {
                 }, [])}
                 {/* add function not implement */}
                 <div className="card card-col">
-                    <div className="card-body new-col">
+                    <div className="card-body new-col" onClick={this.showEditModal.bind(this, {class: v.class})}>
                         <i className="fas fa-plus text-center"></i>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ export default class CardBoard extends Component {
                     {this.state.card_class}
                 </div>
 
-                <CardEdit show={this.state.showModal} application={this.state.application} closeEditModal={this.closeEditModal.bind(this)} />
+                <CardModal show={this.state.showModal} application={this.state.application} closeEditModal={this.closeEditModal.bind(this)} />
 
             </span>
         )
