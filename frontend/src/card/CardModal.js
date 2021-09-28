@@ -37,7 +37,7 @@ export default class CardEdit extends Component {
                         <select className="custom-select" id="class" defaultValue={this.props.application.class}>
                             <option >Choose...</option>
                             <option value="1">Applied</option>
-                            <option value="2">Wish list</option>
+                            <option value="2">Wait list</option>
                             <option value="3">Waiting Referral</option>
                             <option value="3">Rejected</option>
                         </select>
