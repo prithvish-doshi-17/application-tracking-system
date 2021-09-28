@@ -13,12 +13,14 @@ export default class CardEdit extends Component {
         let view = !this.props.application ? <div /> : <div>
             <Modal show={this.props.show} onHide={this.state.closeEditModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{this.props.application.companyName}</Modal.Title>
+                    <Modal.Title>
+                        {this.props.application.companyName}
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="form-group">
-                        <label htmlFor="company-name" className="col-form-label">Company Name</label>
-                        <input type="text" className="form-control" id="company" defaultValue={this.props.application.companyName}/>
+                        <label htmlFor="companyName" className="col-form-label">Company Name</label>
+                        <input type="text" className="form-control" id="companyName" defaultValue={this.props.application.companyName}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="job_title" className="col-form-label">Job Title</label>
