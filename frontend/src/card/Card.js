@@ -5,11 +5,6 @@ class Card extends Component {
         super(props);
 
         this.state = {
-            jobTitle: props.application.jobTitle,
-            companyName: props.application.companyName,
-            date: props.application.date,
-            class: props.application.class,
-            id: props.application.id,
             showEditModal: props.showEditModal
         }
 
@@ -25,12 +20,12 @@ class Card extends Component {
                 <div className="card-body">
                     <div className="card-action">
                         <h6 className="card-title"  onClick={this.stopPropagation}>
-                            {this.state.jobTitle}
+                            {this.props.application.jobTitle}
                         </h6>
                     </div>
-                    <p className="small-content-text">
-                        Company Name: {this.state.companyName}<br/>
-                        Date: {this.state.date}
+                    <p className="small-content-text" key={this.props.application.companyName}>
+                        Company Name: {this.props.application.companyName}<br/>
+                        Date: {this.props.application.date}
                     </p>
                 </div>
             </div>
