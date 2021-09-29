@@ -16,7 +16,7 @@ const columns = [
     }
 ]
 
-const searchResult = [
+let searchResult = [
     {
         jobTitle: 'Backend Engineer',
         companyName: 'Facebook',
@@ -60,7 +60,8 @@ export default class SearchPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            rows: []
+            rows: [],
+            addedList: []
         }
     }
 
@@ -71,12 +72,34 @@ export default class SearchPage extends Component {
         })
     }
 
-    closeCell() {
-        //TODO:
+    deleteTheApplication(id) {
+        let newRows = this.state.rows.filter(app => {
+            return app.id !== id
+        })
+        let newAddedList = this.state.addedList.filter(app => {
+            return app.id !== id
+        })
+        this.setState({
+            rows: newRows,
+            addedList: newAddedList
+        })
     }
 
-    addToWaitlist() {
-        //TODO:
+    addToWaitlist(id) {
+        let newAddedList = this.state.addedList
+        newAddedList.push(id)
+        this.setState({
+            addedList: newAddedList
+        })
+    }
+
+    removeFromWaitlist(id) {
+        let newAddedList = this.state.addedList.filter(v => {
+            return v !== id
+        })
+        this.setState({
+            addedList: newAddedList
+        })
     }
 
 
@@ -111,9 +134,22 @@ export default class SearchPage extends Component {
                                     if (column.id !== 'func') {
                                         return <td key={column.id}>{value}</td>
                                     } else {
-                                        return <td> <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist(this)}> Add </button>
-                                            &nbsp;&nbsp;&nbsp;
-                                            <button type="button" style={{ backgroundColor: 'red' }} className="btn btn-secondary" onClick={this.closeCell(this)}> Delete </button>
+                                        let addButton = this.state.addedList.includes(row.id)
+                                            ? <button type="button" className="btn btn-outline-secondary" onClick={this.removeFromWaitlist.bind(this, row.id)}> Added </button>
+                                            : <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist.bind(this, row.id)}> Add </button>
+                                        return <td>
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-md-3">
+                                                        {addButton}
+                                                    </div>
+                                                    <div className="col-md-2">
+                                                        <button type="button" style={{ backgroundColor: 'red' }} className="btn btn-secondary" onClick={this.deleteTheApplication.bind(this, row.id)}> Delete </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </td>
                                     }
 
