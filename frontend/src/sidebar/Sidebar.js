@@ -7,16 +7,16 @@ import '@fortawesome/fontawesome-free/js/brands';
 
 import '../static/Sidebar.css'
 export default class Sidebar extends Component {
-    loadPage(){
-
-    }
     render() {
         return (
             <div className="left-nav">
                 <div className="left-nav-item">
-                    <i className="fas fa-columns left-nav-icon" onClick={this.loadPage.bind(this)}></i>
-                    <i className="fas fa-plus left-nav-icon" onClick={this.loadPage.bind(this)}></i>
-                    <i className="fas fa-chart-pie left-nav-icon" onClick={this.loadPage.bind(this)}></i>
+                    <div onClick={() => this.props.switchPage('ApplicationPage')}>
+                        <i className="fas fa-columns left-nav-icon" ></i>
+                    </div>
+                    <div onClick={() => this.props.switchPage('SearchPage')}>
+                        <i className="fas fa-search left-nav-icon"></i>
+                    </div>
                 </div>
             </div>
         );
