@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Card from '../application/Card';
+import CardModal from '../application/CardModal';
 
 const columns = [
     {
@@ -68,6 +70,15 @@ export default class SearchPage extends Component {
         })
     }
 
+    closeCell() {
+        //TODO:
+    }
+
+    addToWaitlist() {
+        //TODO:
+    }
+
+
     render() {
         let rows = this.state.rows
 
@@ -98,6 +109,10 @@ export default class SearchPage extends Component {
                                     const value = row[column.id];
                                     return <td key={column.id}>{value}</td>
                                 })}
+                                &nbsp;&nbsp;&nbsp;
+                                <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist(this)}> Add </button>
+                                &nbsp;&nbsp;&nbsp;
+                                <button type="button" style = {{backgroundColor:'red'}} className="btn btn-secondary" onClick={this.closeCell(this)}> Delete </button>                        
                             </tr>
                         })}
                     </tbody>
