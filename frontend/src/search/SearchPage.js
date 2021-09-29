@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Card from '../application/Card';
-import CardModal from '../application/CardModal';
 
 const columns = [
     {
@@ -12,6 +10,9 @@ const columns = [
     }, {
         label: 'Date',
         id: 'date'
+    }, {
+        label: '',
+        id: 'func'
     }
 ]
 
@@ -56,10 +57,10 @@ const searchResult = [
 ]
 
 export default class SearchPage extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            rows:[]
+        this.state = {
+            rows: []
         }
     }
 
@@ -107,12 +108,17 @@ export default class SearchPage extends Component {
                             return <tr key={row.id}>
                                 {columns.map(column => {
                                     const value = row[column.id];
-                                    return <td key={column.id}>{value}</td>
+                                    if (column.id !== 'func') {
+                                        return <td key={column.id}>{value}</td>
+                                    } else {
+                                        return <td> <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist(this)}> Add </button>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <button type="button" style={{ backgroundColor: 'red' }} className="btn btn-secondary" onClick={this.closeCell(this)}> Delete </button>
+                                        </td>
+                                    }
+
                                 })}
-                                &nbsp;&nbsp;&nbsp;
-                                <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist(this)}> Add </button>
-                                &nbsp;&nbsp;&nbsp;
-                                <button type="button" style = {{backgroundColor:'red'}} className="btn btn-secondary" onClick={this.closeCell(this)}> Delete </button>                        
+
                             </tr>
                         })}
                     </tbody>
