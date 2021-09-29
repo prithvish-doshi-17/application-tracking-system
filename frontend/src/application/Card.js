@@ -1,5 +1,25 @@
 import React, { Component } from 'react';
 
+let date = [
+    {
+        class: 1,
+        state: "Wish list",
+        wordOfDate: "Apply By"
+    }, {
+        class: 2,
+        state: "Waiting for referral",
+        wordOfDate: "Referral before "
+    }, {
+        class: 3,
+        state: "Applied",
+        wordOfDate: "Applied Date"
+    }, {
+        class: 4,
+        state: "Rejected",
+        wordOfDate: "Applied Date"
+    }
+]
+
 class Card extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +35,9 @@ class Card extends Component {
     }
 
     render() {
+        let dateType = date.find(d =>{
+            return d.class === this.props.application.class
+        })
         return (
             <div className="card card-col" key={this.state.id+"_card"}  onClick={this.state.showEditModal}>
                 <div className="card-body">
@@ -24,8 +47,8 @@ class Card extends Component {
                         </h6>
                     </div>
                     <p className="small-content-text" key={this.props.application.companyName}>
-                        Company Name: {this.props.application.companyName}<br/>
-                        Date: {this.props.application.date}
+                        {this.props.application.companyName}<br/>
+                        {dateType.wordOfDate}: {this.props.application.date}
                     </p>
                 </div>
             </div>
