@@ -70,10 +70,10 @@ export default class CardEdit extends Component {
                         </div>
                         <select className="custom-select" id="class" value={this.state.class} onChange={this.handleChange.bind(this)}>
                             <option >Choose...</option>
-                            <option value="1">Applied</option>
-                            <option value="2">Wait list</option>
-                            <option value="3">Waiting Referral</option>
-                            <option value="3">Rejected</option>
+                            <option value="1">Wish list</option>
+                            <option value="2">Waiting Referral</option>
+                            <option value="3">Applied</option>
+                            <option value="4">Rejected</option>
                         </select>
                     </div>
                 </Modal.Body>

@@ -139,15 +139,15 @@ export default class CardBoard extends Component {
     groupApplication(applications) {
         let result = [
             {
-                title: 'Applied',
+                title: 'Wish list',
                 applications: [],
                 class: 1
             }, {
-                title: 'Wait list',
+                title: 'Waiting for referral',
                 applications: [],
                 class: 2
             }, {
-                title: 'Waiting for referral',
+                title: 'Applied',
                 applications: [],
                 class: 3
             }, {
