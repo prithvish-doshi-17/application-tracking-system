@@ -81,5 +81,19 @@ def editcsv():
         exit(1)
     return jsonify('Create an application succeddfully!')
 
+@app.route("/getNewId", methods=['GET'])
+def getNewId():
+    path = "applications.csv"
+    try:
+        f = open(path, 'r',  encoding='utf-8')
+        rows = csv.reader(f)
+        i = 0
+        for row in islice(rows, 1, None):
+            i += 1
+        return i
+    except:
+        print('ERROR: can not found ' + path)
+        exit(1)
+
 if __name__ == "__main__":
     app.run()
