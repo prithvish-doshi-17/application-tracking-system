@@ -50,17 +50,19 @@ def getDataFromCSV():
         rows = csv.reader(f)
         result = []
         for row in islice(rows, 1, None):
-            dic = {}
-            dic['jobTitle'] = row[0]
-            dic['companyName'] = row[1]
-            dic['date'] = row[2]
-            dic['class'] = row[3]
-            dic['id'] = row[4]
-            result.append(dic)
+            if (len(row) == 5):
+                dic = {}
+                dic['jobTitle'] = row[0]
+                dic['companyName'] = row[1]
+                dic['date'] = row[2]
+                dic['class'] = row[3]
+                dic['id'] = row[4]
+                result.append(dic)
+            
         json_str = json.dumps(result)
         return json_str
-    except:
-        print('ERROR: can not found ' + path)
+    except Exception as e: 
+        print(e)
         exit(1)
         
 @app.route("/application", methods=['POST'])
@@ -76,8 +78,8 @@ def editcsv():
         with open(path, 'a+', encoding='utf-8') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerow(newLine)
-    except:
-        print('ERROR: can not found ' + path)
+    except Exception as e: 
+        print(e)
         exit(1)
     return jsonify('Create an application succeddfully!')
 
@@ -91,8 +93,8 @@ def getNewId():
         for row in islice(rows, 1, None):
             i += 1
         return jsonify(i)
-    except:
-        print('ERROR: can not found ' + path)
+    except Exception as e: 
+        print(e)
         exit(1)
 
 if __name__ == "__main__":
