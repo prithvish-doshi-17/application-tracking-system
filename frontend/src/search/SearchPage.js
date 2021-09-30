@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import * as d3 from 'd3';
-import testcsv from "../data/results.csv"
+import $ from 'jquery'
 
 const columns = [
     {
@@ -18,46 +17,6 @@ const columns = [
     }
 ]
 
-let searchResult = [
-    {
-        jobTitle: 'Backend Engineer',
-        companyName: 'Facebook',
-        date: '2021-09-22',
-        class: 1,
-        id: 0
-    }, {
-        jobTitle: 'Front-end Engineer',
-        companyName: 'Git',
-        date: '2021-09-22',
-        class: 2,
-        id: 1
-    }, {
-        jobTitle: 'Software Engineer',
-        companyName: 'Roblox',
-        date: '2021-09-22',
-        class: 3,
-        id: 2
-    }, {
-        jobTitle: 'Front-end Engineer',
-        companyName: 'Google',
-        date: '2021-09-22',
-        class: 4,
-        id: 3
-    }, {
-        jobTitle: 'Test Engineer',
-        companyName: 'FaceBook',
-        date: '2021-09-22',
-        class: 1,
-        id: 4
-    }, {
-        jobTitle: 'Software Engineer',
-        companyName: 'Roblox',
-        date: '2021-09-22',
-        class: 1,
-        id: 5
-    }
-]
-
 export default class SearchPage extends Component {
     constructor(props) {
         super(props)
@@ -66,17 +25,31 @@ export default class SearchPage extends Component {
             addedList: []
         }
     }
-s
+
     search() {
-        d3.csv(testcsv, function(data) {
-            console.log(data)
-            for (var i = 0; i < data.length; i++) {
-                console.log(data[i].Name);
-                console.log(data[i].Age);
+        if (!this.state.searchText){
+            alert("Search bar cannot be empty!!")
+            return
+        }
+        $.ajax({
+            url: 'http://localhost:5000/seach',
+            method: 'get',
+            data: {
+                keywords: this.state.searchText
+            },
+            dataType: "json",
+            success: (data) => {
+                let res = data.map(d => {
+                    return {
+                        jobTitle: d.jobTitle,
+                        companyName: d.companyName,
+                        location: d.location
+                    }
+                })
+                this.setState({
+                    rows: res
+                })
             }
-        });
-        this.setState({
-            rows: searchResult
         })
     }
 
@@ -112,6 +85,9 @@ s
         })
     }
 
+    handleChange(event) {
+        this.setState({ [event.target.id]: event.target.value });
+    }
 
     render() {
         let rows = this.state.rows
@@ -121,7 +97,7 @@ s
                 <div className="container">
                     <div className="row">
                         <div className="col-6 input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Keyword" aria-label="Username" aria-describedby="basic-addon1" />
+                            <input type="text" id="searchText" className="form-control" placeholder="Keyword" aria-label="Username" aria-describedby="basic-addon1" value={this.state.searchText} onChange={this.handleChange.bind(this)} />
                         </div>
                         <div>
                             <button type="button" className="btn btn-secondary" onClick={this.search.bind(this)}>Search</button>
@@ -132,7 +108,7 @@ s
                     <thead>
                         <tr>
                             {columns.map(column => {
-                                return <th key={column.id}>{column.label}</th>
+                                return <th key={column.id + '_th'}>{column.label}</th>
                             })}
                         </tr>
                     </thead>

@@ -1,4 +1,3 @@
-import { dsv } from 'd3';
 import React, { Component } from 'react';
 import Card from './Card';
 import CardModal from './CardModal';
@@ -75,8 +74,8 @@ export default class CardBoard extends Component {
         let card_titles = this.createCardTitle(result);
         let card_class = this.createCardClass(result);
 
-        // add to cs
-
+        // add to csv
+        
         this.setState({
             applications: newApplications, 
             card_titles: card_titles,
