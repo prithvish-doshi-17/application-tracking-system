@@ -25,13 +25,18 @@ Here each table represents the multiple stages of the application process. Curre
 ## Features:
 
 ## Installation:
-* Install
-First of all, you need to install [Node.js](https://nodejs.org/en/). After that, run the following command in the frontend directory to open the website. 
+* First of all, you need to install [Node.js](https://nodejs.org/en/).
 ```
 npm install
-npm start
 ```
-
+* Second, you need to install [Python](https://www.python.org/downloads/) and Flask[https://pypi.org/project/Flask/]. 
+*  After that, run the following command in the frontend and backend directory to open the website. 
+```
+ C:\...\application-tracking-system\frontend> npm start
+```
+```
+ C:\...\application-tracking-system\backend> flask run
+```
 
 ## Future Scope:
 
