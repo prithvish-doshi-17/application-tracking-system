@@ -28,7 +28,7 @@ export default class SearchPage extends Component {
     }
 
     search() {
-        if (!this.state.searchText){
+        if (!this.state.searchText) {
             alert("Search bar cannot be empty!!")
             return
         }
@@ -40,9 +40,9 @@ export default class SearchPage extends Component {
             },
             contentType: 'application/json',
             success: (data) => {
-                let res = data.map((d,i) => {
+                let res = data.map((d, i) => {
                     return {
-                        id:i,
+                        id: i,
                         jobTitle: d.jobTitle,
                         companyName: d.companyName,
                         location: d.location
@@ -70,17 +70,44 @@ export default class SearchPage extends Component {
         })
     }
 
-    addToWaitlist(id) {
+    addToWaitlist(job) {
         let newAddedList = this.state.addedList
-        newAddedList.push(id)
+        newAddedList.push(job.id)
+        this.getNewId().done((newID=>{
+            let newApplication = {
+                id: newID,
+                jobTitle: job.jobTitle,
+                companyName: job.companyName,
+                date: job.date,
+                class: '1'
+            };
+            $.ajax({
+                url: 'http://localhost:5000/application',
+                method: 'POST',
+                data:JSON.stringify({
+                    application: newApplication
+                }),
+                contentType: 'application/json',
+                success: (msg)=>{
+                    alert(msg);
+                }
+            })
+        }))
         this.setState({
             addedList: newAddedList
         })
     }
 
-    removeFromWaitlist(id) {
+    getNewId() {
+        return $.ajax({
+            url: 'http://localhost:5000/getNewId',
+            method: 'GET'
+        })
+    }
+
+    removeFromWaitlist(job) {
         let newAddedList = this.state.addedList.filter(v => {
-            return v !== id
+            return v !== job.id
         })
         this.setState({
             addedList: newAddedList
@@ -123,12 +150,12 @@ export default class SearchPage extends Component {
                                         return <td key={column.id}>{value}</td>
                                     } else {
                                         let addButton = this.state.addedList.includes(row.id)
-                                            ? <button type="button" className="btn btn-outline-secondary" onClick={this.removeFromWaitlist.bind(this, row.id)}> Added </button>
-                                            : <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist.bind(this, row.id)}> Add </button>
-                                        return <td>
-                                            <div className="container" key={row.id+'_func'}>
+                                            ? <button type="button" className="btn btn-outline-secondary" onClick={this.removeFromWaitlist.bind(this, row)}> Added </button>
+                                            : <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist.bind(this, row)}> Add </button>
+                                        return <td key={row.id + '_func'}>
+                                            <div className="container">
                                                 <div className="row">
-                                                    <div className="col-md-3">
+                                                    <div className="col-md-4">
                                                         {addButton}
                                                     </div>
                                                     &nbsp;&nbsp;
