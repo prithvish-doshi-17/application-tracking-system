@@ -29,7 +29,7 @@ Here each table represents the multiple stages of the application process. Curre
 ```
 npm install
 ```
-* Second, you need to install [Python](https://www.python.org/downloads/) and Flask[https://pypi.org/project/Flask/]. 
+* Second, you need to install [Python](https://www.python.org/downloads/) and [Flask](https://pypi.org/project/Flask/). 
 *  After that, run the following command in the frontend and backend directory to open the website. 
 ```
  C:\...\application-tracking-system\frontend> npm start
