@@ -22,7 +22,7 @@ def hello():
     }
     return jsonify(obj)
 
-@app.route("/seach")
+@app.route("/search")
 def search():
     keywords = request.args.get('keywords')
     keywords = keywords.replace(' ', '+')
@@ -42,9 +42,9 @@ def search():
         df.at[i, "location"] = div.find("div", {"class": "Qk80Jf"}).text
     return jsonify(df.to_dict('records'))
 
-@app.route("/application", method=['GET'])
+@app.route("/application", methods=['GET'])
 def getDataFromCSV():
-    path = "../frontend/src/data/applications.csv"
+    path = "./data/applications.csv"
     try:
         f = open(path, 'r',  encoding='utf-8')
         rows = csv.reader(f)
@@ -63,17 +63,23 @@ def getDataFromCSV():
         print('ERROR: can not found ' + path)
         exit(1)
         
-@app.route("/application", method=['POST'])
-def editcsv(str_data):
-    path = "../frontend/src/data/applications.csv"
-    my_dict = json.loads(s = str_data)
+@app.route("/application", methods=['POST'])
+def editcsv():
+    path = "./data/applications.csv"
+    csvTitle = ['jobTitle', 'companyName', 'date', 'class', 'id']
+    application = request.get_json()['application']
+    newLine = []
+    for t in csvTitle:
+        newLine.append(application[t] if t in application else None)
+
     try:
         with open(path, 'a+', encoding='utf-8') as f:
             writer = csv.writer(f, delimiter=',')
-            writer.writerow(my_dict.values())
+            writer.writerow(newLine)
     except:
         print('ERROR: can not found ' + path)
         exit(1)
+    return jsonify('Create an application succeddfully!')
 
 if __name__ == "__main__":
     app.run()

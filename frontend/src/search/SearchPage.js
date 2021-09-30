@@ -21,6 +21,7 @@ export default class SearchPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            searchText: '',
             rows: [],
             addedList: []
         }
@@ -32,23 +33,24 @@ export default class SearchPage extends Component {
             return
         }
         $.ajax({
-            url: 'http://localhost:5000/seach',
+            url: 'http://localhost:5000/search',
             method: 'get',
             data: {
                 keywords: this.state.searchText
             },
-            dataType: "json",
+            contentType: 'application/json',
             success: (data) => {
-                let res = data.map(d => {
+                let res = data.map((d,i) => {
                     return {
+                        id:i,
                         jobTitle: d.jobTitle,
                         companyName: d.companyName,
                         location: d.location
                     }
-                })
+                });
                 this.setState({
                     rows: res
-                })
+                });
             }
         })
     }
@@ -124,11 +126,12 @@ export default class SearchPage extends Component {
                                             ? <button type="button" className="btn btn-outline-secondary" onClick={this.removeFromWaitlist.bind(this, row.id)}> Added </button>
                                             : <button type="button" className="btn btn-secondary" onClick={this.addToWaitlist.bind(this, row.id)}> Add </button>
                                         return <td>
-                                            <div className="container">
+                                            <div className="container" key={row.id+'_func'}>
                                                 <div className="row">
                                                     <div className="col-md-3">
                                                         {addButton}
                                                     </div>
+                                                    &nbsp;&nbsp;
                                                     <div className="col-md-2">
                                                         <button type="button" style={{ backgroundColor: 'red' }} className="btn btn-secondary" onClick={this.deleteTheApplication.bind(this, row.id)}> Delete </button>
                                                     </div>

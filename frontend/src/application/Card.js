@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 
 let date = [
     {
-        class: 1,
+        class: "1",
         state: "Wish list",
         wordOfDate: "Apply By"
     }, {
-        class: 2,
+        class: "2",
         state: "Waiting for referral",
         wordOfDate: "Referral before "
     }, {
-        class: 3,
+        class: "3",
         state: "Applied",
         wordOfDate: "Applied Date"
     }, {
-        class: 4,
+        class: "4",
         state: "Rejected",
         wordOfDate: "Applied Date"
     }

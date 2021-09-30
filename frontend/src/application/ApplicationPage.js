@@ -1,71 +1,64 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import CardModal from './CardModal';
+import $ from 'jquery'
 
-let application_list = [
-    {
-        jobTitle: 'Backend Engineer',
-        companyName: 'Facebook',
-        date: '2021-09-22',
-        class: 1,
-        id: 0
-    }, {
-        jobTitle: 'Front-end Engineer',
-        companyName: 'Git',
-        date: '2021-09-22',
-        class: 2,
-        id: 1
-    }, {
-        jobTitle: 'Software Engineer',
-        companyName: 'Roblox',
-        date: '2021-09-22',
-        class: 3,
-        id: 2
-    }, {
-        jobTitle: 'Front-end Engineer',
-        companyName: 'Google',
-        date: '2021-09-22',
-        class: 4,
-        id: 3
-    }, {
-        jobTitle: 'Test Engineer',
-        companyName: 'FaceBook',
-        date: '2021-09-22',
-        class: 1,
-        id: 4
-    }, {
-        jobTitle: 'Software Engineer',
-        companyName: 'Roblox',
-        date: '2021-09-22',
-        class: 1,
-        id: 5
-    }
-]
 
 export default class CardBoard extends Component {
 
     constructor(props) {
         super(props);
 
-
-
-        let result = this.groupApplication(application_list);
-        let card_titles = this.createCardTitle(result);
-        let card_class = this.createCardClass(result);
         this.state = {
-            applications: application_list, 
-            card_titles: card_titles,
-            card_class: card_class,
+            applications: [], 
+            card_titles: [],
+            card_class: [],
             showModal:false
         }
+        this.getInitData = this.getInitData.bind(this);
+        this.groupApplication = this.groupApplication.bind(this);
+        this.createCardTitle = this.createCardTitle.bind(this);
+        this.createCardClass = this.createCardClass.bind(this);
     }
 
+    getInitData(){
+        return $.ajax({
+                url: 'http://localhost:5000/application',
+                method: 'GET'
+        })
+    }
 
+    componentDidMount(){
+        this.getInitData()
+        .done((data) => {
+            data = JSON.parse(data);
+            let result = this.groupApplication(data);
+            let card_titles = this.createCardTitle(result);
+            let card_class = this.createCardClass(result);
+            this.setState({
+                applications: data, 
+                card_titles: card_titles,
+                card_class: card_class
+            })
+        })
+    }
 
     updateCardBoard(application){
         let newApplications = this.state.applications
         if (application.id >= newApplications.length){
             newApplications.push(application)
+
+            $.ajax({
+                url: 'http://localhost:5000/application',
+                method: 'POST',
+                data:JSON.stringify({
+                    application: application
+                }),
+                contentType: 'application/json',
+                success: (msg)=>{
+                    alert(msg);
+                }
+            })
         }else{
             newApplications[application.id] = application
         }
@@ -73,8 +66,6 @@ export default class CardBoard extends Component {
         let result = this.groupApplication(newApplications);
         let card_titles = this.createCardTitle(result);
         let card_class = this.createCardClass(result);
-
-        // add to csv
         
         this.setState({
             applications: newApplications, 
@@ -87,8 +78,15 @@ export default class CardBoard extends Component {
 
     showEditModal(application, mode) {
         let modalMode = mode
-        if (!application.id)
-            application.id = this.state.applications.length
+        if (!application.id){
+            let newId = 0
+            for (let idx in this.state.applications){
+                if (newId < this.state.applications[idx].id)
+                    newId = this.state.applications[idx].id
+            }
+            application.id = String(newId+1)
+        }
+            
         this.setState({
             showModal: true,
             application: application,
@@ -144,19 +142,19 @@ export default class CardBoard extends Component {
             {
                 title: 'Wish list',
                 applications: [],
-                class: 1
+                class: "1"
             }, {
                 title: 'Waiting for referral',
                 applications: [],
-                class: 2
+                class: "2"
             }, {
                 title: 'Applied',
                 applications: [],
-                class: 3
+                class: "3"
             }, {
                 title: 'Rejected',
                 applications: [],
-                class: 4
+                class: "4"
             }
         ]
         applications.forEach(app => {
