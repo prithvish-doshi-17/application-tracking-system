@@ -50,7 +50,7 @@ cd [location of the git repository]/frontend
 npm install
 npm start
 ```
-* Install [python3](https://www.python.org/downloads/), and run the following command on `the other consle`:
+* Install [python3](https://www.python.org/downloads/), and run the following command on `the other console`. If you can see the pip version in your console, you install pip successfully!
 ```
 python get-pip.py
 pip -V
@@ -63,7 +63,7 @@ pip install -r requirements.txt
 ```
 
 * Now, you can start the backend by running `flask run` on your console
-* Conclusion:<br/>After installing all ncessary dependencies, you can run the following command to start our server:
+* Conclusion:<br/>After installing all ncessary dependencies, you can run the following command to start the frontend and backend server in separate console:
 ```
 cd [location of the git repository]/frontend
 npm start
