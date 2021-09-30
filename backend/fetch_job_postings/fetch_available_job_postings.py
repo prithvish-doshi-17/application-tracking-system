@@ -1,3 +1,4 @@
+import os.path
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -8,7 +9,7 @@ keywords = input("Enter keywords:")
 keywords = keywords.replace(' ', '+')
 url = "https://www.google.com/search?q=" + keywords + "&ibp=htl;jobs"
 print(url)
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome(os.path.realpath(r"..\..\resources\chromedriver"))
 
 driver.get(url)
 content = driver.page_source
@@ -21,3 +22,4 @@ for i, div in enumerate(mydivs):
     df.at[i, "Company"] = div.find("div", {"class": "vNEEBe"}).text
     df.at[i, "Location"] = div.find("div", {"class": "Qk80Jf"}).text
 print(df)
+driver.close()
