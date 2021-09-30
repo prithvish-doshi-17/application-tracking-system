@@ -25,14 +25,52 @@ Here each table represents the multiple stages of the application process. Curre
 ## Features:
 
 ## Installation:
-* Install
-First of all, you need to install [Node.js](https://nodejs.org/en/). After that, run the following command in the frontend directory to open the website. 
+* Clone our project
+* Before installation, we recommand you to open two consoles, one for frontend and the other for backend.
+* First of all, you need to install [Node.js](https://nodejs.org/en/). After that, run the following command in the frontend directory to open the website. 
+* After installing Node.js, try to run command `npm` on your console, and you will see the result as below. If you can't, trying to reopen your console and try the command again.
 ```
+$ npm
+npm <command>
+
+Usage:
+
+npm install        install all the dependencies in your project
+npm install <foo>  add the <foo> dependency to your project
+npm test           run this project's tests
+npm run <foo>      run the script named <foo>
+npm <command> -h   quick help on <command>
+npm -l             display usage info for all commands
+npm help <term>    search for help on <term>
+npm help npm       more involved overview
+```
+* Third, run the following command. <br/> `npm start` is the command to run frontend server.
+```
+cd [location of the git repository]/frontend
 npm install
 npm start
 ```
+* Install [python3](https://www.python.org/downloads/), and run the following command on `the other consle`:
+```
+python get-pip.py
+pip -V
+```
 
+* Then, start to install python dependencies:
+```
+cd [location of the git repository]/backend
+pip install -r requirements.txt
+```
 
+* Now, you can start the backend by running `flask run` on your console
+* Conclusion:<br/>After installing all ncessary dependencies, you can run the following command to start our server:
+```
+cd [location of the git repository]/frontend
+npm start
+
+cd [location of the git repository]/backend
+flask run
+```
 ## Future Scope:
 
 
