@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as d3 from 'd3';
+import testcsv from "../data/results.csv"
 
 const columns = [
     {
@@ -64,13 +66,21 @@ export default class SearchPage extends Component {
             addedList: []
         }
     }
-
+s
     search() {
-        // let result = []
+        d3.csv(testcsv, function(data) {
+            console.log(data)
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].Name);
+                console.log(data[i].Age);
+            }
+        });
         this.setState({
             rows: searchResult
         })
     }
+
+
 
     deleteTheApplication(id) {
         let newRows = this.state.rows.filter(app => {
