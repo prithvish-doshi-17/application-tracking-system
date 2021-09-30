@@ -1,5 +1,3 @@
-![Your Repository's Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=prithvish-doshi-17&theme=blue-green)
-
 #      Job Application Tracker
 
 Introduction:
