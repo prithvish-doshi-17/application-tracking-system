@@ -22,7 +22,9 @@ Here each table represents the multiple stages of the application process. Curre
 
 ## Technologies Used:
 
-## Features:
+** Python
+** Node.Js
+** Flask 
 
 ## Installation:
 * Clone our project
@@ -71,8 +73,6 @@ npm start
 cd [location of the git repository]/backend
 flask run
 ```
-## Future Scope:
-
 
 
 ## License
