@@ -5,7 +5,7 @@ the given date for referral is passed
 import os
 import datetime
 import pandas as pd
-
+#Setting required display features after reading CSV
 pd.set_option('display.max_columns', None)
 df = pd.read_csv(os.path.realpath(r"../data/applications.csv"), header=0)
 for index, row in df.iterrows():
