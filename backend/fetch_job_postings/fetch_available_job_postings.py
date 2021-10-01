@@ -7,11 +7,11 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
 
-
+#fetches data from the URL based on keywords entered. The specific job links will be added as future scope
 keywords = input("Enter keywords:")
 keywords = keywords.replace(' ', '+')
 url = "https://www.google.com/search?q=" + keywords + "&ibp=htl;jobs"
-print(url)
+
 driver = webdriver.Chrome(os.path.realpath(r"..\..\resources\chromedriver"))
 
 driver.get(url)
