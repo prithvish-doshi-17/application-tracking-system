@@ -19,7 +19,7 @@ This application is created as a part of our SE project for Fall 2021
 https://user-images.githubusercontent.com/43064854/135554649-9f5e8f21-ff12-45c9-82b4-37078e88709d.mp4
 
 ## Roadmap:
-![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap.PNG)
+![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap%20-%202.PNG)
 
 
 ## Explanation:
