@@ -1,6 +1,11 @@
+"""
+This module updates class of a particular application from "Waiting for referral" to "Wishlist" once
+the given date for referral is passed
+"""
 import os
-import pandas as pd
 import datetime
+import pandas as pd
+
 pd.set_option('display.max_columns', None)
 df = pd.read_csv(os.path.realpath(r"../data/applications.csv"), header=0)
 for index, row in df.iterrows():
@@ -9,4 +14,3 @@ for index, row in df.iterrows():
     if (d2 - d1).days >= 0 and (row['class'] == 3):
         df.at[index, 'class'] = 2
 df.to_csv(os.path.realpath(r"../data/applications.csv"), index=False)
-
