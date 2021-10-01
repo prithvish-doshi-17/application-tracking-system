@@ -66,7 +66,11 @@ pip -V
 * Then, start to install python dependencies:
 ```
 cd [location of the git repository]/backend
-pip install -r requirements.txt
+pip install flask
+pip install -U flask-cors
+pip install selenium
+pip install bs4
+pip install webdriver-manager
 ```
 
 * Now, you can start the backend by running `flask run` on your console
