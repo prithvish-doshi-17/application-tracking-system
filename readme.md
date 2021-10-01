@@ -4,15 +4,19 @@
 ![GitHub issues](https://img.shields.io/github/issues-closed/prithvish-doshi-17/application-tracking-system)
 ![GitHub top language](https://img.shields.io/github/languages/top/prithvish-doshi-17/application-tracking-system)
 
-#      Job Application Tracker
+#      J-Tracker - Your Job Tracking Assistant
 
-Introduction:
+https://user-images.githubusercontent.com/43064854/135554150-c06afd4e-d223-47e3-b123-b45f9cd1b87a.mp4
+
 If you have ever come across the process of applying for jobs and internships, you must be knowing that it's not a cakewalk. Managing the job applications is a tedious task. Our application helps you to track and manage your job application process and helps you to control your application process without the need of messy excel sheets.
 
 This application is created as a part of our SE project for Fall 2021
 
 ## Basic Design:
 ![Basic Design](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Overall%20Design.PNG)
+
+### Here's how the application looks like:
+https://user-images.githubusercontent.com/43064854/135554649-9f5e8f21-ff12-45c9-82b4-37078e88709d.mp4
 
 ## Roadmap:
 ![Roadmap](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/resources/Roadmap.PNG)
