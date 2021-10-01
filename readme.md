@@ -1,4 +1,5 @@
 [![GitHub license](https://img.shields.io/github/license/prithvish-doshi-17/application-tracking-system)](https://github.com/prithvish-doshi-17/application-tracking-system/blob/main/LICENSE)
+[![DOI](https://zenodo.org/badge/408949717.svg)](https://zenodo.org/badge/latestdoi/408949717)
 ![GitHub issues](https://img.shields.io/github/issues/prithvish-doshi-17/application-tracking-system)
 ![GitHub issues](https://img.shields.io/github/issues-closed/prithvish-doshi-17/application-tracking-system)
 ![GitHub top language](https://img.shields.io/github/languages/top/prithvish-doshi-17/application-tracking-system)
