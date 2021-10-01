@@ -1,8 +1,11 @@
+"""
+This module fetches and scrapes the google search results for available job postings based on the
+keywords entered
+"""
 import os.path
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 keywords = input("Enter keywords:")
@@ -21,5 +24,4 @@ for i, div in enumerate(mydivs):
     df.at[i, "Job Title"] = div.find("div", {"class": "BjJfJf PUpOsf"}).text
     df.at[i, "Company"] = div.find("div", {"class": "vNEEBe"}).text
     df.at[i, "Location"] = div.find("div", {"class": "Qk80Jf"}).text
-print(df)
 driver.close()
