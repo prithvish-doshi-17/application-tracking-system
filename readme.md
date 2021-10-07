@@ -57,9 +57,8 @@ cd [location of the git repository]/frontend
 npm install
 npm start
 ```
-* Install [python3](https://www.python.org/downloads/), and run the following command on `the other console`. If you can see the pip version in your console, you install pip successfully!
+* Install [python3](https://www.python.org/downloads/) and [pip](https://pip.pypa.io/en/stable/installation/). Run the following command on `the other console`. If you can see the pip version in your console, you install pip successfully!
 ```
-python get-pip.py
 pip -V
 ```
 
