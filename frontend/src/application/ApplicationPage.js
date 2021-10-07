@@ -113,6 +113,7 @@ export default class CardBoard extends Component {
         })
     }
 
+    // create all cards(application) and make cards having the same class in the same column
     createCardClass(applications_group) {
         return applications_group.reduce((pv, v) => {
             let app_class = <div className="col" key={v.title + "_class"} id={v.title + "_class"}>
@@ -133,6 +134,7 @@ export default class CardBoard extends Component {
         }, [])
     }
 
+    // create the class title
     createCardTitle(applications_group) {
         return applications_group.reduce((pv, v) => {
             let title = <div className="col" key={v.title + "_title"}>
@@ -149,6 +151,7 @@ export default class CardBoard extends Component {
         }, [])
     }
 
+    // initialize the data, classify data according to their class
     groupApplication(applications) {
         let result = [
             {
