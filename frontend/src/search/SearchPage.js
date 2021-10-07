@@ -100,6 +100,7 @@ export default class SearchPage extends Component {
 
     getNewId() {
         return $.ajax({
+            async: false,
             url: 'http://localhost:5000/getNewId',
             method: 'GET'
         })

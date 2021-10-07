@@ -14,6 +14,8 @@ export default class CardEdit extends Component {
         }
     }
 
+    // set data to state automatically corresponding to the attribute 'id' of input field
+    // ex: <input id = 'date'> => setState({date: value})
     handleChange(event){
 		this.setState({ [event.target.id]: event.target.value });
 	}
@@ -27,6 +29,7 @@ export default class CardEdit extends Component {
             date: this.state.date,
             class: this.state.class
         }
+        // call parent function to handle data change
         this.state.submitFunc(application)
 
     }

@@ -21,6 +21,7 @@ export default class CardBoard extends Component {
         this.createCardClass = this.createCardClass.bind(this);
     }
 
+    // get initial data to render the root page
     getInitData(){
         return $.ajax({
                 url: 'http://localhost:5000/application',
@@ -29,6 +30,7 @@ export default class CardBoard extends Component {
     }
 
     componentDidMount(){
+        // fetch the data only after this component is mounted
         this.getInitData()
         .done((data) => {
             data = JSON.parse(data);
@@ -43,9 +45,11 @@ export default class CardBoard extends Component {
         })
     }
 
+    // the update function for child component
     updateCardBoard(application){
         let newApplications = this.state.applications
         if (application.id >= newApplications.length){
+            // current application is a new application, create a new one and save in the backend.
             newApplications.push(application)
 
             $.ajax({
@@ -63,6 +67,7 @@ export default class CardBoard extends Component {
             newApplications[application.id] = application
         }
         
+        // rerender the page to represent the update result
         let result = this.groupApplication(newApplications);
         let card_titles = this.createCardTitle(result);
         let card_class = this.createCardClass(result);
@@ -76,15 +81,22 @@ export default class CardBoard extends Component {
         })
     }
 
+    getNewId() {
+        return $.ajax({
+            async: false,
+            url: 'http://localhost:5000/getNewId',
+            method: 'GET'
+        })
+    }
+
+    // open the card modal according to the application in parameter
     showEditModal(application, mode) {
         let modalMode = mode
         if (!application.id){
-            let newId = 0
-            for (let idx in this.state.applications){
-                if (newId < this.state.applications[idx].id)
-                    newId = this.state.applications[idx].id
-            }
-            application.id = String(newId+1)
+            // if the application lacks id meaning it is new record.
+            this.getNewId().done((newID=>{
+                application.id = newID
+            }))
         }
             
         this.setState({
